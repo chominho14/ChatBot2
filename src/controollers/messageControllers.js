@@ -1,5 +1,10 @@
 export const handleHome = (req, res) => {
-  res.send("home~~");
+  const fakeMessages = [
+    { userName: "minho", text: "how are u?" },
+    { userName: "bot", text: "No andswer" },
+  ];
+
+  return res.render("home", { pageTitle: "Home", fakeMessages });
 };
 
 export const getMessage = (req, res) => {

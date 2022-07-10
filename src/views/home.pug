@@ -1,0 +1,12 @@
+extends base
+include mixins/message
+
+block content 
+    h1 Home!
+    ul 
+        each potato in fakeMessages 
+            +message(potato)
+        
+
+    input(placeholder="Message...")
+    button send  
