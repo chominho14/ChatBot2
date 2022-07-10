@@ -2,11 +2,28 @@ extends base
 include mixins/message
 
 block content 
-    h1 Home!
+    h1 Home!    
+    ul
+        h4 bot 
+        div : 무엇을 도와드릴까요~?
     ul 
-        each potato in fakeMessages 
-            +message(potato)
-        
+        each message in fakeMessages 
+            +message(message)
+    div    
+        form(method="POST")#commentForm
+            input(placeholder="Username", type="text", name="username",required)#commentInput1
+            input(placeholder="Message..." type="text",name="text", required)#commentInput2
+            input(type="submit", value="Send")#commentSend
 
-    input(placeholder="Message...")
-    button send  
+//- block scripts 
+//-     script(src="/static/comment.js")
+
+
+
+//-         form#commentForm
+//-             input(placeholder="userName",value=fakeMessages.userName, name="userName",required)
+//-             textarea(placeholder="Message...",cols="50",rows="3", required)
+//-             button Send
+    
+//- block scripts 
+//-     script(src="./client/comment.js")
