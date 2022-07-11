@@ -7,11 +7,11 @@ block content
         h4 bot 
         div : 무엇을 도와드릴까요~?
     ul 
-        each message in fakeMessages 
+        each message in messages 
             +message(message)
     div    
         form(method="POST")#commentForm
-            input(placeholder="Username", type="text", name="username",required)#commentInput1
+            input(placeholder="Username", type="text", name="name",required)#commentInput1
             input(placeholder="Message..." type="text",name="text", required)#commentInput2
             input(type="submit", value="Send")#commentSend
 
