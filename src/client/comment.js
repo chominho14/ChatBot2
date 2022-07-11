@@ -3,12 +3,16 @@ const input1 = document.getElementById("#commentInput1");
 const input2 = document.getElementById("#commentInput2");
 const inputSend = document.getElementById("#commentSend");
 
+const addComment = (username, text) => {
+  // const
+};
+
 const handleSubmit = async (event) => {
   event.preventDefault();
   const username = input1.value;
   const text = input2.value;
 
-  if (username === "") {
+  if (username === "" && text === "") {
     return;
   }
   const response = await fetch("/textQuery", {

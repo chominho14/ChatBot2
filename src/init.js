@@ -1,4 +1,5 @@
 import app from "./server";
+import "./db";
 
 const PORT = 4000;
 const handleListening = () =>
