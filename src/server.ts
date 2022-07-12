@@ -1,9 +1,9 @@
-import express from "express";
+import express, { Express } from "express";
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";
 import "./models/Message";
 
-const app = express();
+const app: Express = express();
 // log를 관리
 const logger = morgan("dev");
 
