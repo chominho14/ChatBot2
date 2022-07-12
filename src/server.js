@@ -7,16 +7,16 @@ const app = express();
 // log를 관리
 const logger = morgan("dev");
 
-// pug 실행
+// pug 실행, 설정
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/src/views");
 
 app.use(logger);
+// request를 파싱
 app.use(express.urlencoded({ extended: true }));
+// json으로 request.body 받을 수 있게 설정
 app.use(express.json());
 
 app.use("/", globalRouter);
-app.use("/textQuery", globalRouter);
-app.use("/eventQuery", globalRouter);
 
 export default app;

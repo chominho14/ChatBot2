@@ -2,16 +2,19 @@ extends base
 include mixins/message
 
 block content 
-    h1 Home!    
-    ul
-        h4 bot 
-        div : 무엇을 도와드릴까요~?
-    ul 
-        each message in messages 
-            +message(message)
+    h1 Home!
     div    
         form(method="POST")#commentForm
             input(placeholder="Username", type="text", name="name",required)#commentInput1
             input(placeholder="Message..." type="text",name="text", required)#commentInput2
-            input(type="submit", value="Send")#commentSend
+            input(type="submit", value="Send")#commentSend    
+    ul
+        h4 bot 
+        div : 안녕하세요. 퀸텟시스템즈 챗봇입니다. 무엇이 궁금하신가요?
+    ul 
+        each message in messages 
+            +message(message)
+    
 
+
+    

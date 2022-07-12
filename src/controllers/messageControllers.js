@@ -1,5 +1,7 @@
 import Message from "../models/Message";
 
+// ---------- dialogflow 실행 설정 ----------
+
 const dialogflow = require("dialogflow");
 const uuid = require("uuid");
 
@@ -16,41 +18,55 @@ const sessionClient = new dialogflow.SessionsClient({
 });
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
-export const handleHome = async (req, res) => {
+// --------------------------------------
+
+// GET요청 시 실행 함수
+export const getMessage = async (req, res) => {
   const messages = await Message.find({});
+  // 클라이언트로 렌더링
   return res.render("home", { pageTitle: "Home", messages });
 };
 
+// POST요청 시 실행 함수
 export const postMessage = async (req, res) => {
-  const { name, text } = req.body;
-  await Message.create({
-    name,
-    text,
-  });
-
-  const request = {
-    session: sessionPath,
-    queryInput: {
-      text: {
-        // The query to send to the dialogflow agent
-        text: req.body.text,
-        // The language used by the client (en-US)
-        languageCode: languageCode,
+  try {
+    // req.body에 들어온 name과 text를 DB에 저장
+    const { name, text } = req.body;
+    await Message.create({
+      name,
+      text,
+    });
+    console.log(name, text);
+    const request = {
+      session: sessionPath,
+      queryInput: {
+        text: {
+          // 입력받은 text를 dialogflow에 전달
+          text: req.body.text,
+          languageCode: languageCode,
+        },
       },
-    },
-  };
+    };
 
-  // Send request and log result
-  const responses = await sessionClient.detectIntent(request);
-  console.log("Detected intent");
-  const result = responses[0].queryResult;
-  console.log(`  Query: ${result.queryText}`);
-  console.log(`  Response: ${result.fulfillmentText}`);
+    // dialogflow에 요청을 보내고 볻아온 정보를 변수 response에 담는다
+    const responses = await sessionClient.detectIntent(request);
+    console.log("Detected intent");
+    const result = responses[0].queryResult;
+    console.log(`  Query: ${result.queryText}`);
+    console.log(`  Response: ${result.fulfillmentText}`);
 
-  await Message.create({
-    name: "bot",
-    text: result.fulfillmentText,
-  });
+    // dialogflow에서 받은 데이터중 text만 추가해 DB에 답는다
+    await Message.create({
+      name: "bot",
+      text: result.fulfillmentText,
+    });
 
-  return res.redirect("/");
+    // 홈화면으로 redirect한다.
+    return res.redirect("/");
+  } catch (error) {
+    res.sendStatus(500);
+    return console.log("error", error);
+  } finally {
+    console.log("Message Posted");
+  }
 };
