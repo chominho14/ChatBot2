@@ -15,5 +15,6 @@
 - DBMS : MongoDB
 - ODM : Mongoose
 - API : Dialogflow
+- HTML View Engine : Pug
 
 ---
