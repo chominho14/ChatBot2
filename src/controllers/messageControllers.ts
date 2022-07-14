@@ -38,6 +38,15 @@ export const postMessage = async (req: Request, res: Response) => {
       text,
     });
     console.log(name, text);
+
+    if (text.includes("나쁜 말")) {
+      await Message.create({
+        name: "Bot",
+        text: "고운 말을 사용해 주세요.",
+      });
+      return res.redirect("/");
+    }
+
     const request = {
       session: sessionPath,
       queryInput: {

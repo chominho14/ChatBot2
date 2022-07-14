@@ -9,8 +9,9 @@ block content
             input(placeholder="Message..." type="text",name="text", required)#commentInput2
             input(type="submit", value="Send")#commentSend    
     ul
-        h4 bot 
-        div : 안녕하세요. 퀸텟시스템즈 챗봇입니다. 무엇이 궁금하신가요?
+        h4 Bot 
+        div : 안녕하세요. 퀸텟시스템즈 챗봇입니다. 궁금하신 것을 말씀해 주세요.
+        div ex) 운영 시간, 회사 위치, 사이트 주소
     ul 
         each message in messages 
             +message(message)
