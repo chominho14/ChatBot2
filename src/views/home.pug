@@ -3,10 +3,11 @@ include mixins/message
 
 block content 
     h1 Home!
+ 
     div    
         form(method="POST")#commentForm
-            input(placeholder="Username", type="text", name="name",required)#commentInput1
-            input(placeholder="Message..." type="text",name="text", required)#commentInput2
+            input(placeholder="Username", type="text", name="name",required, autoComplete="off")#commentInput1
+            input(placeholder="Message..." type="text",name="text", required,autoComplete="off")#commentInput2
             input(type="submit", value="Send")#commentSend    
     ul
         h4 Bot 

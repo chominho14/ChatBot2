@@ -18,3 +18,13 @@
 - HTML View Engine : Pug
 
 ---
+
+##### MVC 디자인 패턴
+
+---
+
+#### 결과 화면
+
+<img width="80%" src="https://user-images.githubusercontent.com/62542933/179972026-f1d41d24-0b14-4473-98c8-d708a6ae7444.gif" />
+
+<img width="80%" src="https://user-images.githubusercontent.com/62542933/179972080-e6fc2e9c-10e0-428d-ba04-fc08a26bf5e4.gif" />
